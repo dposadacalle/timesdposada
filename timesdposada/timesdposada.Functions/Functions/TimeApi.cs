@@ -89,8 +89,8 @@ namespace timesdposada.Functions.Functions
           Description: Update the entry for the Id 
              
         */
-        [FunctionName(nameof(UpdateEntry))]
-        public static async Task<IActionResult> UpdateEntry(
+        [FunctionName(nameof(UpdateTime))]
+        public static async Task<IActionResult> UpdateTime(
              [HttpTrigger(AuthorizationLevel.Anonymous, "put", Route = "times/{id}")] HttpRequest req,
              [Table("times", Connection = "AzureWebJobsStorage")] CloudTable entryTable,
              string id,
@@ -159,13 +159,13 @@ namespace timesdposada.Functions.Functions
             Description: 
                - Get all the entries from to time table
         */
-        [FunctionName(nameof(GetAllEntries))]
-        public static async Task<IActionResult> GetAllEntries(
+        [FunctionName(nameof(GetAllTimes))]
+        public static async Task<IActionResult> GetAllTimes(
 
             // Brinding through HttpRequest
-            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "entries")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "times")] HttpRequest req,
             // Brinding through CloudTable 
-            [Table("time", Connection = "AzureWebJobsStorage")] CloudTable timeTable,
+            [Table("times", Connection = "AzureWebJobsStorage")] CloudTable timeTable,
             // Brinding through ILogger
             ILogger log)
         {
@@ -206,12 +206,12 @@ namespace timesdposada.Functions.Functions
             Description: 
                - Delete the entry for the Register Id
         */
-        [FunctionName(nameof(DeleteEntryById))]
-        public static async Task<IActionResult> DeleteEntryById(
+        [FunctionName(nameof(DeleteTimeById))]
+        public static async Task<IActionResult> DeleteTimeById(
 
-             [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "entry/{id}")] HttpRequest req,
-             [Table("time", "TIME", "{id}", Connection = "AzureWebJobsStorage")] TimeEntity timeEntity,
-             [Table("time", Connection = "AzureWebJobsStorage")] CloudTable entryTable,
+             [HttpTrigger(AuthorizationLevel.Anonymous, "delete", Route = "time/{id}")] HttpRequest req,
+             [Table("times", "TIME", "{id}", Connection = "AzureWebJobsStorage")] TimeEntity timeEntity,
+             [Table("times", Connection = "AzureWebJobsStorage")] CloudTable entryTable,
              string id,
              ILogger log)
         {

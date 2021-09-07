@@ -42,7 +42,7 @@ namespace employees.Test.Tests
             DefaultHttpRequest request = TestFactory.CreateHttpRequest(timeId, timeRequest);
 
             // Act
-            IActionResult response = await TimeApi.UpdateEntry(request, mockTodos, timeId.ToString(), logger);
+            IActionResult response = await TimeApi.UpdateTime(request, mockTodos, timeId.ToString(), logger);
 
             // Assert
             OkObjectResult result = (OkObjectResult)response;
@@ -59,7 +59,7 @@ namespace employees.Test.Tests
             DefaultHttpRequest request = TestFactory.CreateHttpRequest(timeRequest);
 
             // Act
-            IActionResult response = await TimeApi.GetAllEntries(request, mockTodos, logger);
+            IActionResult response = await TimeApi.GetAllTimes(request, mockTodos, logger);
 
             // Assert
             OkObjectResult result = (OkObjectResult)response;
@@ -79,7 +79,7 @@ namespace employees.Test.Tests
             DefaultHttpRequest request = TestFactory.CreateHttpRequest(timeId, timeRequest);
 
             // Act
-            IActionResult response = await TimeApi.DeleteEntryById(request, timeEntity, mockTime, timeId.ToString(), logger);
+            IActionResult response = await TimeApi.DeleteTimeById(request, timeEntity, mockTime, timeId.ToString(), logger);
 
             // Assert
             OkObjectResult result = (OkObjectResult)response;
